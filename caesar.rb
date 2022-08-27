@@ -40,5 +40,6 @@ def caesar_cipher(str, shift)
       element = element
     end
   end
+  
   new_arr.join
 end

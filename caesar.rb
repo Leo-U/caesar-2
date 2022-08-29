@@ -1,7 +1,7 @@
 def caesar_cipher(str, shift)
   return str if shift % 26 == 0
 
-  #make large shift values small (small values unaffected). negative shift stays negative.
+  #make large shift values small (small values unaffected), negative shift stays negative:
   if shift > 0
     shift = shift % 26
   elsif shift < 0
@@ -10,32 +10,31 @@ def caesar_cipher(str, shift)
   #------
 
   arr = str.chars.map do |chr|
-    #
-    chr.ord.between?(65, 90) || chr.ord.between?(97, 122) ? chr = [chr.ord] : chr = chr
-
-    if chr.is_a?(Array) then
-      if chr[0].between?(65, 90)
-        if (chr[0] + shift).between?(65, 90) == false
-          if shift > 0
-            chr[0] = shift - (91 - chr[0]) + 65
-          elsif shift < 0
-            chr[0] = chr[0] - 64 + 90 + shift
-          end
+    
+    if (65..90) === chr.ord || (97..122) === chr.ord
+      chr = chr.ord
+      if (65..90) === chr
+        if (65..90) === (chr + shift)
+          chr = chr + shift
         else
-          chr[0] = chr[0] + shift
+          if shift > 0
+            chr = shift - (91 - chr) + 65
+          elsif shift < 0
+            chr = chr - 64 + 90 + shift
+          end
         end
-      elsif chr[0].between?(97, 122)
-        if (chr[0] + shift).between?(97, 122) == false
-          if shift > 0
-            chr[0] = shift - (123 - chr[0]) + 97
-          elsif shift < 0
-            chr[0] = chr[0] - 96 + 122 + shift
-          end
+      elsif (97..122) === chr
+        if (65..90) === (chr + shift)
+          chr = chr + shift
         else
-          chr[0] = chr[0] + shift
+          if shift > 0
+            chr = shift - (123 - chr) + 97
+          elsif shift < 0
+            chr = chr - 96 + 122 + shift
+          end
         end
       end
-      chr[0] = chr[0].chr
+      chr = chr.chr
     else
       chr = chr
     end

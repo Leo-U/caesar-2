@@ -12,15 +12,12 @@ def caesar_cipher(str, shift)
       if (65..90) === (chr + shift) || (97..122) === (chr + shift)
         chr = chr + shift
       else
-        if shift > 0
-          chr = shift - (range.last + 1 - chr) + range.first
-        elsif shift < 0
-          chr = chr - (range.first - 1) + range.last + shift
+        if shift > 0 then chr = shift - (range.last + 1 - chr) + range.first
+        elsif shift < 0 then chr = chr - (range.first - 1) + range.last + shift
         end
       end
       chr = chr.chr
     else
-      p range
       chr = chr
     end
   end

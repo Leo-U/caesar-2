@@ -12,6 +12,7 @@ def caesar_cipher(str, shift)
   arr = str.chars.map do |chr|
     
     if (65..90) === chr.ord || (97..122) === chr.ord
+
       chr = chr.ord
       if (65..90) === chr
         if (65..90) === (chr + shift)
@@ -23,8 +24,9 @@ def caesar_cipher(str, shift)
             chr = chr - 64 + 90 + shift
           end
         end
+        
       elsif (97..122) === chr
-        if (65..90) === (chr + shift)
+        if (97..122) === (chr + shift)
           chr = chr + shift
         else
           if shift > 0
@@ -35,6 +37,7 @@ def caesar_cipher(str, shift)
         end
       end
       chr = chr.chr
+
     else
       chr = chr
     end
